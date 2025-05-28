@@ -10,6 +10,7 @@ import java.util.Optional;
 
 /** A cat café takes care of a number of cats. */
 public class CatCafe {
+    // Two cats are equal if they have the same weight
     private Tree<FelineOverLord> clowder = new Empty<>();
 
     /**
@@ -36,7 +37,7 @@ public class CatCafe {
      * @param name name of the cat
      * @return cat with the given name
      */
-    // TODO Umbauen, sodass ein passendes Optional zurückgeliefert wird!
+    // TODO Refactor with Optional as the return type
     public Optional<FelineOverLord> getCatByName(String name) {
         if (name == null)
             // return empty Optional
@@ -57,7 +58,8 @@ public class CatCafe {
      * @param maxWeight upper weight limit (exclusive)
      * @return cat within the weight limits
      */
-    // TODO Umbauen, sodass ein passendes Optional zurückgeliefert wird!
+
+    // TODO Refactor with Optional as the return type
     public Optional<FelineOverLord> getCatByWeight(int minWeight, int maxWeight) {
         if (minWeight < 0)
             // return empty Optional
