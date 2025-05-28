@@ -5,6 +5,8 @@ package tree;
  *
  * @param <T> parametric type of the binary search tree elements
  */
+
+// Visitor method which must be implemented at classes which store the functionality
 public interface TreeVisitor<T extends Comparable<T>> {
 
     /**

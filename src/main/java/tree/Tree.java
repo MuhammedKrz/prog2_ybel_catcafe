@@ -8,6 +8,9 @@ import java.util.stream.StreamSupport;
  *
  * @param <T> parametric type of the node data
  */
+
+// Interface, that accepts a given visitor with certain attributes
+// Objects with stable class structure implements this interface
 public interface Tree<T extends Comparable<T>> extends Iterable<T> {
     /**
      * Add new data to the sorted tree.
@@ -74,6 +77,9 @@ public interface Tree<T extends Comparable<T>> extends Iterable<T> {
      * @return a string representation as result of the traversal process
      * @throws NullPointerException if visitor is {@code null}
      */
+
+
+    // Visitor method, that accepts a visitor from the data type TreeVisitor<T>
     String accept(TreeVisitor<T> visitor);
 
     /**

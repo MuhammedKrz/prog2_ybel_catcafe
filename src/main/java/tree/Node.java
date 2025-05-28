@@ -15,6 +15,10 @@ import java.util.function.Consumer;
  * @param rightChild rightChild subtree
  * @param <T> parametric type of the node data
  */
+
+// Record class which implements the tree interface
+// stable immutable class which doesn't change
+// represents a node and execute the algorithms / functionality
 public record Node<T extends Comparable<T>>(Tree<T> leftChild, T data, Tree<T> rightChild)
         implements Tree<T> {
     /** Create a new node: Ensure that all arguments are not {@code null}. */
@@ -46,6 +50,7 @@ public record Node<T extends Comparable<T>>(Tree<T> leftChild, T data, Tree<T> r
         }
     }
 
+    // Here gets the visitor accept and the method called from an other class which stores the functionality
     @Override
     public String accept(TreeVisitor<T> visitor) {
         requireNonNull(visitor);
@@ -58,10 +63,17 @@ public record Node<T extends Comparable<T>>(Tree<T> leftChild, T data, Tree<T> r
         return new TreeIterator<>(this);
     }
 
+    // This method is not necessary
+    // foreach method with predefined Consumer interface
+    // logic must be given via lambda expressions
+    // only allows consumers from types which accepts the super class (classes with Tree<T> interface)
     @Override
     public void forEach(Consumer<? super T> action) {
+        // ensures that the function not return null
+        // Otherwise NullPointer Exception
         requireNonNull(action);
 
+        // iterate through all elements and execute the accept action on this element
         for (T t : this) {
             action.accept(t);
         }
