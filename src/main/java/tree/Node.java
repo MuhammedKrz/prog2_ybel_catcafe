@@ -54,7 +54,6 @@ public record Node<T extends Comparable<T>>(Tree<T> leftChild, T data, Tree<T> r
     @Override
     public String accept(TreeVisitor<T> visitor) {
         requireNonNull(visitor);
-
         return visitor.visit(this);
     }
 
