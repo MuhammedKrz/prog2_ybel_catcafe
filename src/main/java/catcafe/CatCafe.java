@@ -6,8 +6,11 @@ import tree.Empty;
 import tree.Tree;
 import tree.TreeVisitor;
 
+import java.util.Optional;
+
 /** A cat café takes care of a number of cats. */
 public class CatCafe {
+    // Two cats are equal if they have the same weight
     private Tree<FelineOverLord> clowder = new Empty<>();
 
     /**
@@ -34,14 +37,18 @@ public class CatCafe {
      * @param name name of the cat
      * @return cat with the given name
      */
-    public FelineOverLord getCatByName(String name) {
-        if (name == null) return null;
-
-        for (FelineOverLord c : clowder) {
-            if (c.name().equals(name)) return c;
-        }
-
-        return null;
+    // TODO Refactor with Optional as the return type
+    public Optional<FelineOverLord> getCatByName(String name) {
+        if (name == null)
+            // return empty Optional
+            return Optional.empty();
+        // clowder stores all cat objects in a binary tree data structure
+        return clowder.stream()
+            // filters based on the name
+            .filter(c -> c.name().equals(name))
+            // returns the first element of this stream as a optional
+            // or empty Optional if the stream is empty
+            .findFirst();
     }
 
     /**
@@ -51,15 +58,22 @@ public class CatCafe {
      * @param maxWeight upper weight limit (exclusive)
      * @return cat within the weight limits
      */
-    public FelineOverLord getCatByWeight(int minWeight, int maxWeight) {
-        if (minWeight < 0) return null;
-        if (maxWeight < minWeight) return null;
 
-        for (FelineOverLord c : clowder) {
-            if (c.weight() >= minWeight && c.weight() < maxWeight) return c;
-        }
-
-        return null;
+    // TODO Refactor with Optional as the return type
+    public Optional<FelineOverLord> getCatByWeight(int minWeight, int maxWeight) {
+        if (minWeight < 0)
+            // return empty Optional
+            return Optional.empty();
+        if (maxWeight < minWeight)
+            // return empty Optional
+            return Optional.empty();
+        // clowder stores all cat objects in a binary tree data structure
+        return clowder.stream()
+            // filters based on the name
+            .filter(c -> c.weight() >= minWeight && c.weight() < maxWeight)
+            // returns the first element of this stream as a optional
+            // or empty Optional if the stream is empty
+            .findFirst();
     }
 
     /**

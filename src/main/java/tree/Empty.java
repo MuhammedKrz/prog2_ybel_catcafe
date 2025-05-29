@@ -12,6 +12,10 @@ import java.util.function.Consumer;
  *
  * @param <T> parametric type of the node data
  */
+
+// Record class which implements the tree interface
+// stable immutable class which doesn't change
+// represents an empty tree
 public record Empty<T extends Comparable<T>>() implements Tree<T> {
     @Override
     public boolean isEmpty() {
@@ -32,6 +36,8 @@ public record Empty<T extends Comparable<T>>() implements Tree<T> {
         return visitor.visit(this);
     }
 
+    // This method returns an iterator object
+    // that allows to iterate through the elements of the tree
     @Override
     public Iterator<T> iterator() {
         return new TreeIterator<>(this);
