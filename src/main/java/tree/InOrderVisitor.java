@@ -12,7 +12,8 @@ public class InOrderVisitor implements TreeVisitor<FelineOverLord>{
 
     @Override
     public String visit(Node<FelineOverLord> node) {
-        // node objects have basically already the functionality
+        // fetching the data from node recursive
+        // calls itself
         String leftSubtree = node.leftChild().accept(this);
         String root = node.data().toString();
         String rightSubtree = node.rightChild().accept(this);
